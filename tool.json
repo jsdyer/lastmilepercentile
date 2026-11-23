@@ -3,7 +3,15 @@
   "title": "Last-Mile Percentile",
   "description": "Compare your download or upload speed with tests on the same network in a Canadian city.",
   "category": "liminal-tools",
-  "tags": ["internet speed", "speed test", "Canada", "ASN", "ISP", "M-Lab", "bandwidth"],
+  "tags": [
+    "internet speed",
+    "speed test",
+    "Canada",
+    "ASN",
+    "ISP",
+    "M-Lab",
+    "bandwidth"
+  ],
   "icon": "chart-no-axes-combined",
   "url": "/lastmilepercentile/",
   "source": "https://github.com/jsdyer/lastmilepercentile",
@@ -12,10 +20,31 @@
   "data_info": {
     "mode": "snapshot",
     "detail": "Measurement Lab publishes monthly speed percentiles and test counts by city and network.",
-    "cadence": "Weekly checks for complete monthly files",
+    "cadence": "Weekly",
     "probes": [
-      {"label":"Data retrieved","url":"https://coolcode.ca/lastmilepercentile/data/status.json","path":["retrieved"],"count_at":{"path":["cohorts"],"unit":"monthly comparison groups"}},
-      {"label":"Test months","url":"https://coolcode.ca/lastmilepercentile/data/status.json","path":["start"],"end_path":["end"]}
+      {
+        "label": "Data retrieved",
+        "url": "https://coolcode.ca/lastmilepercentile/data/status.json",
+        "path": [
+          "retrieved"
+        ],
+        "count_at": {
+          "path": [
+            "cohorts"
+          ],
+          "unit": "monthly comparison groups"
+        }
+      },
+      {
+        "label": "Test months",
+        "url": "https://coolcode.ca/lastmilepercentile/data/status.json",
+        "path": [
+          "start"
+        ],
+        "end_path": [
+          "end"
+        ]
+      }
     ]
   }
 }
