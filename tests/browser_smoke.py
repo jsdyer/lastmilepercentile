@@ -57,12 +57,12 @@ def main():
                 if latest == "2026-09":
                     page.wait_for_function("document.querySelector('#asn').value === '11260'")
                     assert "Halifax" in page.locator("#context").inner_text()
-                page.evaluate("""window.ndt7.test=async (cfg,handlers)=>{
+                page.evaluate("""() => { window.ndt7.test=async (cfg,handlers)=>{
                     if(!cfg.userAcceptedDataPolicy)throw Error('missing consent');
                     handlers.downloadComplete({LastClientMeasurement:{MeanClientMbps:125.2}});
                     handlers.uploadComplete({LastServerMeasurement:{TCPInfo:{ElapsedTime:2000,BytesReceived:15000}}});
                     return 0;
-                }""")
+                }; }""")
                 page.locator("#test-start").click()
                 assert float(page.locator("#speed").input_value()) == 125.2
                 page.locator("#direction").select_option("upload")
