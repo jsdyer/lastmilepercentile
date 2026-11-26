@@ -12,7 +12,7 @@ function options(id, entries, preferred) {
   select.disabled = entries.length === 0;
 }
 async function json(file) {
-  const response = await fetch(file);
+  const response = await fetch(new URL(file,import.meta.url));
   if (!response.ok) throw Error(response.status);
   return response.json();
 }
@@ -28,7 +28,7 @@ function cities(preferred = $('city').value, asn = $('asn').value) {
 }
 async function load(initial = false) {
   const mine = ++generation;
-  const prefs = initial ? ['BC','Langley','852'] : ['region','city','asn'].map(id=>$(id).value);
+  const prefs = initial ? [document.body.dataset.region || 'BC',document.body.dataset.city || 'Langley',document.body.dataset.asn || '852'] : ['region','city','asn'].map(id=>$(id).value);
   const month = $('month').value, dir = $('direction').value;
   $('status').textContent = 'Loading comparison groups…';
   $('results').hidden = $('source-file').hidden = true;
@@ -37,6 +37,10 @@ async function load(initial = false) {
     const next = await json(`data/${month}-${dir}.json`);
     if (mine !== generation) return;
     rows = next;
+    if (initial && document.body.dataset.asn && !rows.some(r => r[0]===prefs[0] && r[1]===prefs[1] && String(r[2])===prefs[2])) {
+      $('status').textContent = 'This city and network have no published comparison in the selected month. Choose another month.';
+      return;
+    }
     options('region',[...new Set(rows.map(r=>r[0]))].sort().map(v=>[v,names[v] || v]),prefs[0]);
     const src = status.months.find(m=>m.month===month).sources[dir];
     $('source-file').href = src.url; $('source-file').hidden = false;

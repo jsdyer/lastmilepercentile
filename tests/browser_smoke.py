@@ -53,6 +53,21 @@ def main():
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 page.screenshot(path=str(screenshots / "mobile.png"), full_page=True)
                 assert not errors, errors
+                page.goto(f"http://127.0.0.1:{server.server_port}/example-tool/halifax-eastlink/")
+                if latest == "2026-09":
+                    page.wait_for_function("document.querySelector('#asn').value === '11260'")
+                    assert "Halifax" in page.locator("#context").inner_text()
+                page.evaluate("""window.ndt7.test=async (cfg,handlers)=>{
+                    if(!cfg.userAcceptedDataPolicy)throw Error('missing consent');
+                    handlers.downloadComplete({LastClientMeasurement:{MeanClientMbps:125.2}});
+                    handlers.uploadComplete({LastServerMeasurement:{TCPInfo:{ElapsedTime:2000,BytesReceived:15000}}});
+                    return 0;
+                }""")
+                page.locator("#test-start").click()
+                assert float(page.locator("#speed").input_value()) == 125.2
+                page.locator("#direction").select_option("upload")
+                assert float(page.locator("#speed").input_value()) == 60
+                assert not errors,errors
                 browser.close()
             print("Browser checks passed for cohort selection, bands, upload, month and mobile layout")
         finally:

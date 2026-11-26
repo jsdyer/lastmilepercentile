@@ -4,11 +4,16 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="{{DESCRIPTION}}">
 <title>{{TITLE}} · CoolCode</title><link rel="stylesheet" href="./style.css">
-<script type="module" src="app.js"></script>
+<script defer src="./ndt/ndt7.js"></script><script type="module" src="./test-speed.mjs"></script><script type="module" src="./app.js"></script>
 <script defer src="/assets/tool-metrics.js" referrerpolicy="no-referrer"></script>
 </head>
 <body data-project="{{TOOL_ID}}"><header><div class="wrap mast"><a href="https://coolcode.ca/">← CoolCode</a><span>Networks &amp; routing</span></div></header>
-<main class="wrap"><div class="intro"><p class="kicker">Internet measurements / Canada</p><h1>Last-Mile Percentile</h1><p>Where does your speed sit among tests on the same network, in the same city?</p></div>
+<main class="wrap"><div class="intro"><p class="kicker">Last-Mile Percentile</p><h1>{{TITLE}}</h1><p>Where does your speed sit among tests on the same network, in the same city?</p></div>
+<section class="panel start-test"><h2>Test this connection</h2>
+<p>Run a download and upload test for about 20 seconds. It can use substantial data on fast connections. M-Lab publishes the public IP address, test time and measurements and retains the data indefinitely. <a href="https://www.measurementlab.net/privacy/">M-Lab privacy policy</a>.</p>
+<button id="test-start" type="button">I agree — start speed test</button> <a href="#inputs">Enter my own speed</a>
+<p id="test-state" role="status"></p><strong id="test-readings"></strong></section>
+<nav class="examples"><a href="./langley-telus/">TELUS speeds in Langley</a> · <a href="./halifax-eastlink/">Eastlink speeds in Halifax</a></nav>
 <div class="workspace"><section class="panel"><h2>Choose a comparison</h2>
 <form id="inputs"><label>Month<select id="month" disabled></select></label><label>Test direction<select id="direction"><option value="download">Download</option><option value="upload">Upload</option></select></label>
 <label>Province or territory<select id="region" disabled></select></label><label>City<select id="city" disabled></select></label><label>Network (ASN)<select id="asn" disabled></select></label>

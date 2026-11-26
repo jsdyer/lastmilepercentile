@@ -3,6 +3,8 @@
 from html import escape
 import json
 from pathlib import Path
+from comparisons import build_examples
+from search_metadata import add_search_metadata
 import re
 import shutil
 import tempfile
@@ -60,7 +62,8 @@ def build(root=ROOT):
             page = page.replace(placeholder, escape(tool[key], quote=True))
         if re.search(r"\{\{[A-Z_]+\}\}", page):
             raise ValueError("Unresolved template placeholder in web/index.html")
-        index.write_text(page, encoding="utf-8")
+        build_examples(stage, page, tool)
+        index.write_text(add_search_metadata(page,tool), encoding="utf-8")
         (stage / ".nojekyll").touch()
         if output.exists():
             shutil.rmtree(output)

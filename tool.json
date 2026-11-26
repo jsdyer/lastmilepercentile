@@ -1,7 +1,7 @@
 {
   "id": "lastmilepercentile",
-  "title": "Last-Mile Percentile",
-  "description": "Compare your download or upload speed with tests on the same network in a Canadian city.",
+  "title": "Canadian Internet Speed Test & ISP Comparison",
+  "description": "Measure download and upload speeds using M-Lab, or compare a speed you already know with city and ISP test results.",
   "category": "liminal-tools",
   "tags": [
     "internet speed",

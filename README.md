@@ -6,7 +6,9 @@
 Choose a month, city and network, then enter your speed in Mbps. Each comparison shows the two published boundaries around your result and the number of tests behind them.
 <!-- /coolcode:guide -->
 
-The initial September 2026 edition places 100 Mbps between P25 and P50 for TELUS AS852 in Langley, BC (6,331 download tests) and between P50 and P75 for Eastlink AS11260 in Halifax, NS (4,898). Upload and download sample counts are independent. Your number stays in browser memory. The page downloads the chosen monthly file and makes no speed measurement.
+The initial September 2026 edition places 100 Mbps between P25 and P50 for TELUS AS852 in Langley, BC (6,331 download tests) and between P50 and P75 for Eastlink AS11260 in Halifax, NS (4,898). Upload and download sample counts are independent. Your number stays in browser memory. An optional visitor-started NDT7 speed test fills the comparison speed. M-Lab publishes the test address and measurements. Manual comparisons work offline after the monthly file loads.
+
+The bundled Apache-2.0 M-Lab client and worker files in `web/ndt/` are from [ndt7-js commit 1b6da4c](https://github.com/m-lab/ndt7-js/tree/1b6da4cd7743fba0b3bbff5d78815abcc95c87d1). Run the test only after reading the consent text.
 
 ## Reading the measurements
 
