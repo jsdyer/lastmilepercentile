@@ -37,3 +37,5 @@ Public GitHub repositories can have scheduled workflows disabled after 60 days o
 
 This is an interim mitigation, not a scheduling guarantee: GitHub does not document active-workflow renewal as a permanent exemption, and scheduled runs can be delayed or dropped. A scheduler on our own Linux server is the planned independent trigger. The guard does not collect data, create dummy commits, or change source/check timestamps; successful collection and published data freshness still need monitoring.
 <!-- /schedule-reliability -->
+
+The ready-to-use Vancouver comparisons open [TELUS AS852](https://coolcode.ca/lastmilepercentile/vancouver-telus/) and [Novus AS40029](https://coolcode.ca/lastmilepercentile/vancouver-novus/). Each preset publishes the month, both sample counts, median speeds and the two original M-Lab data files before JavaScript runs.
